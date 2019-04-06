@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>812</x>
+      <y>364</y>
+      <w>161</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Server
+--
+_-PORT: int_
+_-games: ArrayList&lt;Game&gt;_
+_-currentGame: Game_
+--
+_+main(args: String[])_
++addNewGame(game: Game)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>273</y>
+      <w>217</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+-players: ArrayList&lt;PlayerHandler&gt;
+-bots: ArrayList&lt;Bot&gt;
+-observers: ArrayList&lt;PlayerHandler&gt;
+-board: Board
+-ID: int[]
+-playerIterator: int
+-playerNo: int
+-winner: int
+-rules: Rules
+-isGame: boolean
+-row: boolean
+--
++Game(playerNo: int)
++addBot(bot: Bot)
++getBots(): ArrayList&lt;Bot&gt;
++getBoard(): Board
++getID(): int
++iterate()
++addPlayer(player: PlayerHandler)
++addObserver(observer: PlayerHandler)
++getIterator(): int
++getIsGame(): boolean
++getPlayerNo(): int
++getPlayers(): ArrayList&lt;PlayerHandler&gt;
++getObservers(): ArrayList&lt;PlayerHandler&gt;
++findField(x: int, y: int): Field
++findNoField(x: int, y: int)
++findChecker(x: int, y: int): Checker
++getWinner(): int
++nextWinner(): int
++getRules(): Rules
++isRow(): boolean
++goRow()
++resetRow()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>238</x>
+      <y>280</y>
+      <w>154</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+_-PORT: int_
+-in: BufferedReader
+-out: PrintWriter
+-serverAddress: String
+-playerID: int
+-playerNo: int
+-gamePanel: GamePanel
+-pnel: JPanel
+-c: GridBagConstraints
+-playerNumber: int
+-skip: JButton
+-move: JButton
+-messageArea: JTextArea
+-messages: JLabel
+--
++Player()
++play()
+_+main(args: String[])_
+
+
+
+
+
+--
++drawBoard()
++setPlayerID(playerID: int)
++makeMove()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>161</x>
+      <y>742</y>
+      <w>182</w>
+      <h>238</h>
+    </coordinates>
+    <panel_attributes>Checker
+--
+-x: int
+-y: int
+-startCorner: int
+-jumper: boolean
+-isOpposite: boolean
+--
++Checker(x: int, y:int, startCorner: int)
++setX(x: int)
++setY(y: int)
++setStartCorner(startCorner: int)
++setOpposite()
++getX(): int
++getY(): int
++getStartCorner(): int
++isOpposite(): boolean
++currentField(game: Game): Field
++yesJumper()
++noJumper()
++isJumper: boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>798</x>
+      <y>721</y>
+      <w>161</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Field
+--
+-corner: int
+-status: int
+-x: int
+-y: int
+--
++Field(x: int, y: int, corner: int)
++freeStatus()
++changeStatus(checker: int)
++getStatus(): int
++getX(): int
++getY(): int
++getCorner(): int
++distance(f2: Field): double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>511</x>
+      <y>721</y>
+      <w>203</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Board
+--
+_-fields_ fieldsNo: int
+--
++Board()
++getFields(): Field[]
++getCheckers(): Checker[]
++freeFieldStatus(x: int, y: int)
++changeFieldStatus(x: int, y: int, player: int)
++getNoChecker(x: int, y: int): int
++searchField(x: int, y: int): Field
++moveChecker(temp: Checker, field: Field)
++anyJumper(temp: Checker): boolean
++resetJumpers()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>539</x>
+      <y>917</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Abstract&gt;&gt;
+AbstractBoard
+--
+_# fields: Field[]_
+_# checkers: Checker[]_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>896</x>
+      <y>35</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Abstract&gt;&gt;
+AbstractRules
+--
+#canShortMove(): boolean
+#canLongMove(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>532</y>
+      <w>147</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Bot
+--
+-generator: Random
+-playerID: int
+-goal: Field
+-corner: int
+-move: String
+-victory: boolean
+--
++getVictory(): boolean
++getID(): int
++Bot(playerID: int, game: Game)
++moveBot(game: Game, fail: int)
++getMove(): String
++isLocked(game: Game): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>217</x>
+      <y>0</y>
+      <w>210</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>GamePanel
+--
+-temp: Ellipse2D.Float
+-g2d: Graphics2D
+-g: Graphics 
+-areas: Area []
+-fieldNo: int
+-checked: int
+-playerID: int
+-response: String
+--
++paint(g: Graphics)
++GamePanel(playerNo: int, playerID: int)
++changeColor(status: int)
++reDraw(xOF: int, yOF: int, xNF: int, yNF: int)
++reset()
++findArea(x: int, y:int): Area
++mouseClicked(e: MouseEvent)
++getChecked(): int
++getMove(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>553</x>
+      <y>42</y>
+      <w>147</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Area
+--
+-x: int
+-y: int
+-status: int
+-ellipse: Ellipse2D.Double
+-marked: boolean
+--
++Area(x: int,y: int)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>805</x>
+      <y>182</y>
+      <w>322</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Rules
+--
+-isFinished: boolean
+--
++legal(checker: Checker, newField: Field, board: Board): boolean
++makeMove(checker: Checker, newField: Field, board: Board): int
++testLegal(checker: Checker, temp: Field, board: Board): String
++testShortMove(checker: Checker, temp: Field, board: Board): int
++testLongMove(checker: Checker, temp: Field, board: Board)
++canShortMove(checker: Checker, temp: Field, board: Board): boolean
++canLongMove(checker: Checker, temp: Field, board: Board): boolean
++isFinished(): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>819</x>
+      <y>511</y>
+      <w>147</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>_PlayerHandler_
+--
+-playerID: int
+_-PORT_: int
+-socket: Socket
+-in: BufferedReader
+-out: PrintWriter
+-response: String
+-jumper: int
+-result: int
+-victory: boolean
+-turn: boolean
+-rules: Rules
+-bots: Bot[]
+--
++PlayerHandler(socket: Socket)
++run()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>385</y>
+      <w>112</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+
+m2=1..n
+</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>658</y>
+      <w>21</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>378</y>
+      <w>126</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+
+m2=1..6
+</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>707</x>
+      <y>770</y>
+      <w>105</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>
+m1=121
+
+m2=1
+</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>371</x>
+      <y>574</y>
+      <w>147</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+
+m2=1..6
+</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>777</y>
+      <w>189</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+
+m2=20, 30, 40, 60
+</panel_attributes>
+    <additional_attributes>250.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>287</y>
+      <w>105</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+
+m2=1
+</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>210</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>84</y>
+      <w>147</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>441</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>868</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>959</x>
+      <y>91</y>
+      <w>21</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+</diagram>
